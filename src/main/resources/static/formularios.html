@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tienda en linea</title>
+        <meta charset="UTF-8">       
+        <meta name="description" content="Pagina de la leccion 2"/>
+        <meta name="keywords" content="html5, css, web, fidelitas"/>
+        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="css/menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header class="header">
+            <nav class="nav">  
+                <a href="index.html" class="logo nav-link">TechShop</a>
+                <ul class="nav-menu">
+                    <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="ejemplo9.html">&LeftTriangleBar;</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="ejemplo2.html">&RightTriangleBar;</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="audios.html">Audios</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="videos.html">Videos</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="iframes.html">iFrames</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link nav-link" href="formularios.html">Formularios</a></li>
+                </ul>
+            </nav>
+        </header>
+        <aside id="barraLateral">
+            <h2>Productos mas vendidos</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipiscing elit cubilia suspendisse nascetur, vivamus enim viverra morbi odio elementum pharetra malesuada suscipit ac congue, taciti cum nunc primis ante torquent fermentum mattis tempus. Commodo nascetur quis pellentesque proin nulla tristique mauris magna, tellus nisl molestie felis tincidunt sagittis penatibus, vitae rhoncus interdum est dapibus primis venenatis. Iaculis malesuada praesent blandit erat primis aliquet dapibus himenaeos, purus ad ante varius litora massa nisi.</p> 
+        </aside>
+        <section id="contenido">
+            <h2>Ejemplo de formularios</h2>
+            <form action="#">
+                <label>button</label>  <input type="button" id="button" name="button" value="Confirmar" /><br/>
+                <label>checkbox</label>  <input type="checkbox" id="checkbox" checked />Terminos y condiciones<br/>
+                <label>color</label>  <input type="color" id="color" name="button" value="#ffff00" /><br/>
+                <label>text</label><input type="text" id="text" placeholder="Digite el texto" size="30"><br/>
+                <label>textarea</label><textarea id="Ejemplo" rows="5" cols="30" ></textarea><br/>
+                <label>date</label>  <input type="date" name="date" min="2021-01-01" max="2023-12-31"><br/>
+                <label>datetime-local</label>  <input type="datetime-local" name="datetime-local"><br/>
+                <label>time</label>  <input type="time" name="time"><br/>
+                <label>email</label>  <input type="email" name="email" placeholder="a-z@a-z.xxx"><br/>
+                <label>file </label><input type="file" name="file" accept="image/png, image/jpeg"><br/>
+                <label>hidden </label><input type="hidden" id="hidden" value="sdfdsf-sdfdsf-fjghj565-65245"><br/>
+                <label>search </label><input type="search" name="search" placeholder="criterio de busqueda"><br/>
+                <label>tel </label><input type="tel" name="tel" placeholder=""><br/>
+                <label>url </label><input type="url" name="url" placeholder=""><br/>
+                <label>week </label><input type="week" name="week"><br/>
+                <label>month </label><input type="month" name="month"><br/>
+                <label>number </label><input type="number" name="number" value="50" min="10" max="60"><br/>
+                <label>password </label><input type="password" name="password"><br/>
+                <label>radio</label>Mañana<input type="radio" name="horario" value="1"><br/>
+                <label>radio</label>Tarde<input type="radio" name="horario" value="2"><br/>
+                <label>radio</label>Noche<input type="radio" name="horario" value="3"><br/>
+                <input type="range" value="24" min="1" max="100"
+                       oninput="this.nextElementSibling.value = this.value">
+                <label>reset </label><input type="reset" name="reset" value="Limpiar"><br/>
+                <label>Submit </label><input type="submit" name="reset" value="Submit"><br/>
+
+            </form>
+        </section>
+        <footer id="piePagina">Derechos Reservados &COPY; 2023 <address>Tibas, Colima</address> <address>Tel: 8899-4477</address></footer>
+    </body>
+</html>
+
+
