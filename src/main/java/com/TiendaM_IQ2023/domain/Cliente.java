@@ -1,4 +1,3 @@
-
 package com.TiendaM_IQ2023.domain;
 
 import jakarta.persistence.Entity;
@@ -11,12 +10,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="cliente")
+@Table(name = "cliente")
 
 public class Cliente implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCliente; //Hibernate lo transforma
@@ -25,15 +24,15 @@ public class Cliente implements Serializable {
     private String correo;
     private String telefono;
 
+    public Cliente() {
 
-public Cliente(){
+    }
 
-}
-public Cliente(String nombre,String apellidos,String correo,String telefono){
-    this.nombre = nombre;
-    this.apellidos = apellidos;
-    this.correo = correo;
-    this.telefono = telefono;
-    
-}
+    public Cliente(String nombre, String apellidos, String correo, String telefono) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.telefono = telefono;
+
+    }
 }
