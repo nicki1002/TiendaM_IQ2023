@@ -3,6 +3,7 @@ package com.TiendaM_IQ2023.controller;
 
 import com.TiendaM_IQ2023.domain.Cliente;
 import com.TiendaM_IQ2023.service.ClienteService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ClienteController {
-    
-  @Autowired
+
+    @Autowired
     ClienteService clienteService;
 
     @GetMapping("/cliente/listado")
@@ -32,21 +33,32 @@ public class ClienteController {
     }
 
     @PostMapping("/cliente/guardar")
-    public String guardarCliente(Cliente cliente){
-    clienteService.save(cliente);
-    return "redirect:/cliente/listado";
+    public String guardarCliente(Cliente cliente) {
+        clienteService.save(cliente);
+        return "redirect:/cliente/listado";
     }
-    
+
     @GetMapping("/cliente/modificar/{idCliente}")
-    public String modificarCliente(Cliente cliente, Model model){ 
+    public String modificarCliente(Cliente cliente, Model model) {
         cliente = clienteService.getCliente(cliente);
-        model.addAttribute("cliente",cliente);
+        model.addAttribute("cliente", cliente);
         return "cliente/modificar";
     }
+
     @GetMapping("/cliente/eliminar/{idCliente}")
-    public String eliminarCliente(Cliente cliente){
+    public String eliminarCliente(Cliente cliente) {
         clienteService.delete(cliente);
         return "redirect:/cliente/listado";
     }
-    
+
+   @GetMapping("/cliente/encontrar")
+    public String encontrarCliente(Cliente cliente) {
+        return "/cliente/buscar";
+    }
+    @GetMapping("/cliente/buscar")
+    public String buscarCliente(Cliente cliente, String apellidos, Model model) {
+        List<Cliente> clientes = clienteService.findByApellidos(apellidos);
+        model.addAttribute("resultados", clientes);
+        return "/cliente/buscar";
+    }
 }

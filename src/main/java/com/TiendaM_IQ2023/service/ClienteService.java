@@ -12,4 +12,9 @@ public interface ClienteService {
     public void save(Cliente cliente); //Para insertar o modificar(Si tiene el idCliente o no)
 
     public void delete(Cliente cliente);
+    
+    public List<Cliente> findByApellidos(String apellidos);
+
+   
+ 
 }
