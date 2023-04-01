@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 
-<html xmls:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://thymeleaf.org.thymeleaf-extras-springsecurity">
     <head th:fragment="head">
         <title>Tech Shop</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
         <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
         <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-        <script th:src="@{/webjars/popper.js/umd/popper.min.js}">
-        </script><script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </head>
     <body>
         <header th:fragment="header" class="header">
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0"> 
                 <div class="container">
-                    <a href="@{/}" class="navbar-toggler">TechShop</a>
+                    <a href="@{/}" class="navbar-brand">TechShop</a>
                     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav">
-                            <li class="nav-item px-2">
-                                <a class="nav-menu-link nav-link" th:href="@{/cliente/listado}"
+                            <li class="nav-item px-2" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')">
+                                <a class="nav-link" th:href="@{/cliente/listado}"
                                    th:text="#{plantilla.clientes}">Clientes</a>
                             </li>
                             <li class="nav-item px-2">
-                                <a class="nav-menu-link nav-link" th:href="@{/categoria/listado}"
+                                <a class="nav-link" th:href="@{/categoria/listado}"
                                    th:text="#{plantilla.categorias}">Categorias</a>
                             </li>
                             <li class="nav-item px-2">
-                                <a class="nav-menu-link nav-link" th:href="@{/articulo/listado}"
+                                <a class="nav-link" th:href="@{/articulo/listado}"
                                    th:text="#{plantilla.articulos}">Articulo</a>
                             </li>
 
                         </ul>
-                        <ul class="navbar-nav ml-auto">
+                        <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
                             <li class="nav-item mr-3">
                                 <a href="#" class="nav-link">
                                     <i class="fas fa-user"></i>
@@ -43,22 +44,34 @@
                                 </a> 
                             </li>
                             <li class="nav-item">
-                                 <form method="POST" th:action="@{/logout}">
-                                   <a href="#" onclick="this.parentNode.submit();" class="nav-link">
-                                     <i class="fas fa-user-times"></i> [[#{plantilla.logout}]]
-                                   </a>
+                                <form method="POST" th:action="@{/logout}">
+                                    <a href="#" onclick="this.parentNode.submit();" class="nav-link">
+                                        <i class="fas fa-user-times"></i> [[#{plantilla.logout}]]
+                                    </a>
                             </li>
+                        </ul>
+                        <ul class="navbar-nav" sec:authorize="!isAuthenticated()">                            
+                            <li class="nav-item">                                
+                                <a class="nav-link" th:href="@{/login}"><i class="fas fa-sign-in-alt"> Login</i></a>                          
+                            </li>                        
                         </ul>
                     </div>
                 </div>
             </nav>
         </header>
     </header>
-    <footer th:frgment="footer" class="footer">
-        <p>&COPY; [[#{plantilla.derechos}]]
-            <a th:href="@{/(lang=es)}">ES</a> |
-            <a th:href="@{/(lang=en)}">EN</a> 
-        </p>
+    <footer th:fragment="footer" class="position-fixed bottom-0 start-0 end-0 bg-info text-white mt-5 p-2">
+        <div class="container">
+            <div class="col">
+                <p class="lead text-center">
+                    &COPY [[#{plantilla.derechos}]]
+
+                    <a th:href="@{/(lang=es)}">ES</a> | 
+
+                    <a th:href="@{/(lang=en)}">EN</a>
+                </p>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
