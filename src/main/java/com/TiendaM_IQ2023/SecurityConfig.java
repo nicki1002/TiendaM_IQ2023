@@ -16,14 +16,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-     @Autowired
+
+    @Autowired
     private UserDetailsService userDetailsService;
- 
+
     @Autowired
     public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
         build.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
-    
 
 //   @Bean
 //    public UserDetailsService users() {
@@ -43,8 +43,6 @@ public class SecurityConfig {
 //                .roles("USER")
 //               .build();
 //        return new InMemoryUserDetailsManager(user, sales, admin);
-    
-
     @Bean
 
     public SecurityFilterChain securityFilterChain(HttpSecurity http)
@@ -76,10 +74,14 @@ public class SecurityConfig {
                         "/categoria/listado",
                         "/cliente/listado")
                 .hasAnyRole("ADMIN", "VENDEDOR")
-                )
+                .requestMatchers(
+                        "/carrito/agregar/**",
+                        "/carrito/eliminar/**",
+                        "/carrito/listado")
+                .hasRole("USER")
+        )
                 .formLogin((form) -> form
-                .loginPage("/login").permitAll()
-                )
+                .loginPage("/login").permitAll())
                 .logout((logout) -> logout.permitAll())
                 .exceptionHandling().accessDeniedPage("/errores/403");
         return http.build();
